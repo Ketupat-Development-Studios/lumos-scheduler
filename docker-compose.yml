@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  scheduler:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env
