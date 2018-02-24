@@ -1,0 +1,23 @@
+{
+  "name": "lumos-scheduler",
+  "version": "1.0.0",
+  "description": "schedules stuff",
+  "main": "scheduler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hueyy/lumos-scheduler.git"
+  },
+  "author": "Feng Jiahai",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/hueyy/lumos-scheduler/issues"
+  },
+  "homepage": "https://github.com/hueyy/lumos-scheduler#readme",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "firebase": "^4.10.1"
+  }
+}
