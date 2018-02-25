@@ -1,6 +1,7 @@
 require('dotenv').config()
 database = require('./database.js')
 triggerSpell = require('./triggerSpell').triggerSpell
+temperatureChecker = require('./temperatureChecker')
 schedules = {} //maps spellsid to cleartimeout
 
 function removeTrigger(spellId){
@@ -100,6 +101,27 @@ function updateOrAddTrigger(spellId, trigger){
                 }, nearestWeeklyTime()
             )
         }
+    }
+    else if(trigger.type == 'temperature'){
+        let timeoutInterval = 15*60*1000
+        console.log(`nearest time is ${nearestDayTime()}`)
+        schedules[spellId] = setTimeout(
+            function action(){
+                temperatureChecker().then(temp => {
+                    if(trigger.direction == 'less than'){
+                        if(temp < trigger.temperature){
+                            triggerSpell(spellId)
+                        }
+                    }
+                    else if(trigger.direction == 'greater than'){
+                        if(temp > trigger.temperature){
+                            triggerSpell(spellId)
+                        }
+                    }
+                })
+                schedules[spellId] = setTimeout(action, timeoutInterval)
+            }, timeoutInterval
+        )
     }
 }
 
