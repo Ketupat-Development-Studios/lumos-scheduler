@@ -22,7 +22,7 @@ function updateOrAddTrigger(spellId, trigger){
             'every_saturday': 6,
             'every_sunday': 0
         }
-        if(trigger.schedule == "everyday"){
+        if(trigger.schedule == "every_day"){
             let nearestDayTime = function(){
                 let start = new Date()
                 let end =  new Date()
@@ -101,6 +101,7 @@ function updateOrAddTrigger(spellId, trigger){
                 }, nearestWeeklyTime()
             )
         }
+        else console.log(`unknown clock schedule ${trigger.schedule}`)
     }
     else if(trigger.type == 'temperature'){
         let timeoutInterval = 15*60*1000
@@ -123,6 +124,7 @@ function updateOrAddTrigger(spellId, trigger){
             }, timeoutInterval
         )
     }
+    else console.log(`unknown trigger type ${trigger.type}`)
 }
 
 database.ref('spells').on('child_added', function(spell){
